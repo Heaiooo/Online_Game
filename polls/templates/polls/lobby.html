@@ -1,0 +1,72 @@
+{% extends "polls/base.html" %}
+{% load static %}
+
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'polls/css/lobby.css' %}">
+{% endblock %}
+
+{% block title %}Лобби {{ game_id }}{% endblock %}
+
+{% block content %}
+
+<input type="hidden" id="game-id" value="{{ game_id }}">
+
+<div class="lobby-container">
+    <div class="lobby-header">
+        <div class="game-code">
+            <span class="code-label">Код игры:</span>
+            <span class="code-value" id="game-code-display">{{ game_id }}</span>
+        </div>
+    </div>
+
+    <div class="lobby-content">
+        <div class="teams-container">
+            <div class="team-card blue-team">
+                <div class="team-header">
+                    <span class="team-name">Синяя команда</span>
+                    <span class="team-count" id="blue-count">0</span>
+                </div>
+                <div class="team-players" id="blue-players">
+                    <div class="empty-message">Нет игроков</div>
+                </div>
+            </div>
+
+            <div class="team-card red-team">
+                <div class="team-header">
+                    <span class="team-name">Красная команда</span>
+                    <span class="team-count" id="red-count">0</span>
+                </div>
+                <div class="team-players" id="red-players">
+                    <div class="empty-message">Нет игроков</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lobby-actions">
+            <div class="role-selection" id="role-selection">
+                <h4>Выберите роль</h4>
+                <div class="role-buttons">
+                    <button id="role-associator" class="role-btn role-associator">Ассоциатор</button>
+                    <button id="role-disassociator" class="role-btn role-disassociator">Деассоциатор</button>
+                    <button id="role-none" class="role-btn role-none">Без роли</button>
+                </div>
+            </div>
+
+            <div class="team-switch" id="team-switch">
+                <h4>Сменить команду</h4>
+                <div class="team-buttons">
+                    <button id="switch-to-blue" class="team-btn team-blue">Перейти в синие</button>
+                    <button id="switch-to-red" class="team-btn team-red">Перейти в красные</button>
+                </div>
+            </div>
+
+            <div class="start-game-container" id="start-game-container" style="display: none;">
+                <button id="start-game-btn" class="btn-start">Начать игру</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'polls/js/lobby.js' %}"></script>
+{% endblock %}

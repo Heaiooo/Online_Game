@@ -1,0 +1,55 @@
+.main_frame {
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 40px 48px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.main_frame .frame h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--peach);
+}
+
+.main_frame p {
+    font-size: 15px;
+    color: #555;
+    padding: 10px 14px;
+    background: var(--cream);
+    border-radius: 8px;
+    border-left: 3px solid var(--orange);
+}
+
+.main_frame p b {
+    color: var(--dark);
+    font-weight: 700;
+}
+
+#logoutBtn {
+    margin-top: 30px !important;
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+    border-radius: 14px;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all .2s ease;
+}
+
+#logoutBtn:hover {
+    transform: translateY(-2px);
+}

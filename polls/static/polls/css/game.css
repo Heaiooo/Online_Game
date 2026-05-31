@@ -1,0 +1,387 @@
+/* Контейнер игры */
+.game-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Хедер */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--white);
+    padding: 20px 30px;
+    border-radius: var(--radius);
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+}
+
+.game-info h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.turn-indicator {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.turn-label {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+}
+
+.turn-label.blue {
+    background: #6b9eff;
+    color: white;
+}
+
+.turn-label.red {
+    background: #ff7070;
+    color: white;
+}
+
+/* Счёт */
+.score-board {
+    display: flex;
+    gap: 40px;
+}
+
+.score {
+    text-align: center;
+    min-width: 100px;
+}
+
+.score-value {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.blue-team .score-value {
+    color: #6b9eff;
+}
+
+.red-team .score-value {
+    color: #ff7070;
+}
+
+.score-label {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* Основная область: чат слева, поле справа */
+.game-main {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 24px;
+    align-items: stretch; /* ИЗМЕНЕНО: Заставляет блоки растягиваться на одинаковую высоту */
+}
+
+/* ========== ЧАТ ========== */
+.chat-panel {
+    background: var(--white);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* ИЗМЕНЕНО: Вместо 600px теперь занимает 100% высоты от игрового поля */
+    min-height: 600px; /* ИЗМЕНЕНО: Базовая минимальная высота чата */
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.chat-header {
+    background: var(--orange);
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.chat-messages .message {
+    background: var(--cream);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    word-break: break-word;
+}
+
+.chat-messages .message.own {
+    background: var(--peach);
+}
+
+.chat-messages .system-message {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 12px;
+    text-align: center;
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 12px;
+    border-top: 1px solid var(--peach);
+    gap: 8px;
+}
+
+.chat-input-field {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--peach);
+    border-radius: 8px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.chat-send-btn {
+    background: var(--orange);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* ========== ИГРОВОЕ ПОЛЕ ========== */
+.board-container {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    display: flex;         /* ИЗМЕНЕНО: Делаем флексом, чтобы выровнять внутренности по высоте */
+    flex-direction: column; /* ИЗМЕНЕНО: Направление сверху вниз */
+}
+
+.game-board {
+    flex: 1; /* ИЗМЕНЕНО: Занимает всё основное пространство, выравнивая высоту с чатом */
+    min-height: 500px;
+}
+
+.loading-spinner {
+    text-align: center;
+    padding: 50px;
+    color: var(--muted);
+}
+
+.board-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+/* Карточка */
+.card {
+    aspect-ratio: 1 / 0.9;
+    background: var(--cream);
+    border: 2px solid var(--peach);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    word-break: break-word;
+}
+
+.card:hover:not(.flipped) {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background: var(--peach);
+}
+
+/* Цвета карточек для ассоциатора */
+.card-blue {
+    background: #d0e4ff;
+    border-color: #6b9eff;
+}
+
+.card-red {
+    background: #ffd0d0;
+    border-color: #ff7070;
+}
+
+.card-black {
+    background: #444;
+    border-color: #333;
+    color: white;
+}
+
+/* Перевёрнутая карточка */
+.card.flipped {
+    opacity: 0.5;
+    background: var(--sand);
+    cursor: default;
+}
+
+.card.flipped:hover {
+    transform: none;
+}
+
+/* Кнопка завершения хода */
+.end-turn-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    background: var(--orange);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Бейдж роли в чате */
+.chat-role-badge {
+    float: right;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.1);
+}
+
+.chat-role-badge.associator {
+    background: #ff9800;
+    color: white;
+}
+
+.chat-role-badge.disassociator {
+    background: #4caf50;
+    color: white;
+}
+
+/* Сообщение о режиме только для чтения */
+.chat-readonly-message {
+    padding: 12px;
+    text-align: center;
+    border-top: 1px solid var(--peach);
+    background: var(--cream);
+}
+
+.readonly-hint {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0;
+}
+
+/* ============================= */
+/* МОДАЛЬНОЕ ОКНО ЗАВЕРШЕНИЯ ИГРЫ */
+/* ============================= */
+
+.game-over-modal {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.25);
+    backdrop-filter: blur(8px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.game-over-modal.hidden {
+    display: none;
+}
+
+.game-over-content {
+    width: 100%;
+    max-width: 520px;
+
+    background: var(--white);
+    border-radius: var(--radius);
+
+    overflow: hidden;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+}
+
+.game-over-header {
+    padding: 22px 28px;
+    background: var(--orange);
+    color: var(--dark);
+    border-bottom: 1px solid var(--peach);
+    text-align: center;
+    margin: 0;
+    font-size: 35px;
+}
+
+.game-over-body {
+    padding: 28px;
+}
+
+.winner-text {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+.final-score {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.final-team-score {
+    text-align: center;
+}
+
+.final-team-score strong {
+    display: block;
+    margin-top: 6px;
+    font-size: 56px;
+    font-family: 'Unbounded', sans-serif;
+}
+
+.final-team-score.blue strong {
+    color: #6b9eff;
+}
+
+.final-team-score.red strong {
+    color: #ff7070;
+}
+
+.game-over-footer {
+    padding: 18px 28px;
+    border-top: 1px solid var(--peach);
+}
+
+.btn-main-menu {
+    display: block;
+    width: 100%;
+
+    text-align: center;
+
+    background: var(--orange);
+    color: var(--dark);
+
+    text-decoration: none;
+
+    padding: 12px 24px;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.btn-main-menu:hover {
+    background: var(--sand);
+}

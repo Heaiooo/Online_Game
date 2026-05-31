@@ -1,0 +1,100 @@
+{% extends "polls/base.html" %}
+{% load static %}
+
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'polls/css/game.css' %}">
+{% endblock %}
+
+{% block title %}Игра {{ game_id }}{% endblock %}
+
+{% block content %}
+
+<input type="hidden" id="game-id" value="{{ game_id }}">
+
+<div class="game-container">
+    <!-- Верхняя панель -->
+    <div class="game-header">
+        <div class="game-info">
+            <h2>Код текущей игры: {{ game_id }}</h2>
+            <div class="turn-indicator" id="turn-indicator">
+                <span class="turn-label">Загрузка...</span>
+            </div>
+        </div>
+        <div class="score-board">
+            <div class="score blue-team">
+                <div class="score-value" id="blue-score">0</div>
+                <div class="score-label">Синие</div>
+            </div>
+            <div class="score red-team">
+                <div class="score-value" id="red-score">0</div>
+                <div class="score-label">Красные</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Основная область -->
+    <div class="game-main">
+        <!-- ЧАТ (только чтение для десоциаторов) -->
+        <div class="chat-panel" id="chat-panel">
+            <div class="chat-header">
+                Чат команды <span id="chat-team-name"></span>
+                <span class="chat-role-badge" id="chat-role-badge"></span>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="system-message">Чат загружается...</div>
+            </div>
+            <div class="chat-input-area" id="chat-input-area" style="display: none;">
+                <input type="text" id="chat-input" placeholder="Введите сообщение..." class="chat-input-field">
+                <button id="chat-send-btn" class="chat-send-btn">Отправить</button>
+            </div>
+            <div class="chat-readonly-message" id="chat-readonly-message" style="display: none;">
+                <p class="readonly-hint">Вы можете только читать чат</p>
+            </div>
+        </div>
+
+        <div class="board-container">
+            <div class="game-board" id="game-board">
+                <div class="loading-spinner">Загрузка поля...</div>
+            </div>
+
+            <button id="end-turn-btn" class="end-turn-btn" style="display: none;">⏹️ Завершить ход</button>
+
+        </div>
+    </div>
+</div>
+
+<div id="game-over-modal" class="game-over-modal hidden">
+    <div class="game-over-content">
+
+        <div id="winner-text" class="game-over-header"></div>
+
+        <div class="game-over-body">
+
+            <div class="final-score">
+
+                <div class="final-team-score blue">
+                    <span>Синие</span>
+                    <strong id="final-blue-score">0</strong>
+                </div>
+
+                <div class="final-team-score red">
+                    <span>Красные</span>
+                    <strong id="final-red-score">0</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="game-over-footer">
+            <a href="/polls/" class="btn-main-menu">
+                Главное меню
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<script src="{% static 'polls/js/game.js' %}"></script>
+{% endblock %}

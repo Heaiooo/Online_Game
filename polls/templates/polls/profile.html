@@ -1,0 +1,33 @@
+{% extends "polls/base.html" %}
+{% load static %}
+
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'polls/css/profile.css' %}">
+{% endblock %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+<div class="main_frame">
+    <div class="frame">
+        <h1>Профиль</h1>
+    </div>
+
+    <div id="profile-loading">Загрузка данных...</div>
+
+    <div id="profile-content" style="display: none;">
+        <p><b>Никнейм: </b><span id="username"></span></p>
+        <p><b>Почта: </b><span id="email"></span></p>
+        <p><b>ID пользователя: </b><span id="user_id"></span></p>
+        <p><b>Сыграно игр: </b><span id="games-played"></span></p>
+        <p><b>Количество побед: </b><span id="games-won"></span></p>
+        <p><b>Винрейт: </b><span id="winrate"></span></p>
+
+    </div>
+
+    <button id="logoutBtn" class="submit-btn" style="margin-top: 20px;">Выйти</button>
+</div>
+
+<script src="{% static 'polls/js/profile.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends "polls/base.html" %}
+{% load static %}
+
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'polls/css/entrance.css' %}">
+{% endblock %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+<div class="frame">
+    <div class="auth_tabs">
+        <button class="tab-btn active" data-tab="login">Вход</button>
+        <button class="tab-btn" data-tab="register">Регистрация</button>
+    </div>
+</div>
+
+<form id="login-form" class="main_frame_en" novalidate>
+    <div class="Enter">
+        <h1>Вход</h1>
+    </div>
+
+    <div class="login">
+        <label for="username">Логин</label>
+        <input type="text"
+               id="username"
+               name="username"
+               required
+               minlength="5"
+               maxlength="20"
+               pattern="[a-zA-Z0-9_]+"
+               title="Только латиница, цифры и подчеркивание, от 5 до 20 символов"
+               placeholder="Введите логин">
+        <span class="error-message" id="username-error"></span>
+    </div>
+
+    <div class="password">
+        <label for="password">Пароль</label>
+        <input type="password"
+               id="password"
+               name="password"
+               required
+               minlength="7"
+               placeholder="Введите пароль">
+        <span class="error-message" id="password-error"></span>
+    </div>
+
+    <div id="login-general-error" class="error-message" style="color: #ff5252; display: none; margin-bottom: 10px;"></div>
+    <button type="submit" class="submit-btn">Войти</button>
+</form>
+
+<form id="register-form" class="main_frame_re" novalidate>
+    <div class="Registrate">
+        <h1>Регистрация</h1>
+    </div>
+
+    <div class="login">
+        <label for="r_username">Логин</label>
+        <input type="text"
+               id="r_username"
+               name="username"
+               required
+               minlength="5"
+               maxlength="20"
+               pattern="[a-zA-Z0-9_]+"
+               title="Только латиница, цифры и подчеркивание, от 5 до 20 символов"
+               placeholder="Введите логин">
+        <span class="error-message" id="r_username-error"></span>
+    </div>
+
+    <div class="email">
+        <label for="email">Почта</label>
+        <input type="email"
+               id="email"
+               name="email"
+               required
+               pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+               title="Введите корректный email (пример: user@example.com)"
+               placeholder="Введите почту">
+        <span class="error-message" id="email-error"></span>
+    </div>
+
+    <div class="password">
+        <label for="r_password">Пароль</label>
+        <input type="password"
+               id="r_password"
+               name="password"
+               required
+               minlength="7"
+               placeholder="Придумайте пароль">
+        <span class="error-message" id="r_password-error"></span>
+    </div>
+
+    <div class="password">
+        <label for="r2_password">Подтверждение пароля</label>
+        <input type="password"
+               id="r2_password"
+               name="password2"
+               required
+               minlength="7"
+               placeholder="Подтвердите пароль">
+        <span class="error-message" id="r2_password-error"></span>
+    </div>
+
+    <div id="register-general-error" class="error-message" style="color: #ff5252; display: none; margin-bottom: 10px;"></div>
+    <button type="submit" class="submit-btn">Зарегистрироваться</button>
+</form>
+
+<script src="{% static 'polls/js/entrance.js' %}"></script>
+{% endblock %}

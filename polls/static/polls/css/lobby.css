@@ -1,0 +1,248 @@
+.lobby-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 30px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.lobby-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--peach);
+}
+
+.game-code {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.code-label {
+    font-size: 20px;
+}
+
+.code-value {
+    font-family: monospace;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    background: var(--cream);
+    padding: 8px 20px;
+    border-radius: 12px;
+    color: var(--orange);
+}
+
+.teams-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+.team-card {
+    background: var(--cream);
+    border-radius: 16px;
+    padding: 20px;
+    border-top: 4px solid;
+}
+
+.blue-team {
+    border-top-color: #6b9eff;
+}
+
+.red-team {
+    border-top-color: #ff7070;
+}
+
+.team-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--peach);
+}
+
+.team-name {
+    flex: 1;
+    font-weight: 700;
+}
+
+.team-count {
+    background: var(--white);
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.team-players {
+    min-height: 150px;
+    margin-bottom: 12px;
+}
+
+.player-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: var(--white);
+    border-radius: 8px;
+    margin-bottom: 6px;
+}
+
+.player-name {
+    font-weight: 600;
+}
+
+.player-role {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: var(--peach);
+}
+
+.associator {
+    background: var(--orange);
+}
+
+.empty-message {
+    color: var(--muted);
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+}
+
+.team-associator-status {
+    font-size: 13px;
+    padding-top: 12px;
+    border-top: 1px solid var(--peach);
+}
+
+.status-label {
+    color: var(--muted);
+}
+
+.status-value {
+    font-weight: 600;
+}
+
+.lobby-actions {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 2px solid var(--peach);
+}
+
+.role-selection h4 {
+    margin-bottom: 15px;
+}
+
+.role-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.role-btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.role-associator {
+    background: var(--orange);
+}
+
+.role-disassociator {
+    background: var(--peach);
+}
+
+.role-btn:hover {
+    transform: translateY(-2px);
+}
+
+.start-game-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-start {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px 28px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: var(--orange);
+    color: var(--dark);
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.btn-start:hover {
+    background: #ffb16a;
+    transform: translateY(-2px);
+}
+
+.btn-start:active {
+    background: #f39a47;
+}
+
+
+.team-switch {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--peach);
+}
+
+.team-switch h4 {
+    margin-bottom: 15px;
+}
+
+.team-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.team-btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.team-blue {
+    background: #6b9eff;
+    color: white;
+}
+
+.team-blue:hover {
+    background: #5a8be0;
+    transform: translateY(-2px);
+}
+
+.team-red {
+    background: #ff7070;
+    color: white;
+}
+
+.team-red:hover {
+    background: #e05a5a;
+    transform: translateY(-2px);
+}

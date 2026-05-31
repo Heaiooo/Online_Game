@@ -1,0 +1,38 @@
+{% extends "polls/base.html" %}
+{% load static %}
+
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'polls/css/start.css' %}">
+{% endblock %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="frame">
+    <h1 class="name">Game of associations</h1>
+
+    <div class="sbottom">
+        <button id="create-lobby-btn" class="btn">Создать лобби</button>
+    </div>
+
+    <div class="sbottom">
+        <button id="join-lobby-btn" class="btn">Присоединиться к игре</button>
+    </div>
+</div>
+
+<dialog id="join-dialog" class="join-dialog">
+    <div class="dialog-content">
+        <h3>Присоединиться к игре</h3>
+        <input type="text" id="join-game-id" placeholder="Введите код игры" maxlength="6" autocomplete="off">
+        <div class="dialog-buttons">
+            <button id="confirm-join-btn" class="btn-primary">Присоединиться</button>
+            <button id="cancel-join-btn" class="btn-secondary">Отмена</button>
+        </div>
+        <div id="join-error" class="error-message" style="display: none;"></div>
+    </div>
+</dialog>
+
+<script src="{% static 'polls/js/start.js' %}"></script>
+{% endblock %}
+
