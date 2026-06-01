@@ -34,7 +34,7 @@
     text-decoration: none;
     transition: all 0.2s;
     color: var(--dark);
-    background: var(--orange);
+    background: var(--white);
     border: none;
     cursor: pointer;
 }
