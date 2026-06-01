@@ -1,4 +1,3 @@
-// ========== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ==========
 const gameId = document.getElementById('game-id')?.value;
 let currentPlayerTeam = null;
 let currentPlayerRole = null;
@@ -7,7 +6,6 @@ let currentTurnPhase = null;
 let socket = null;
 let wsConnected = false;
 
-// ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
 function getToken() {
     return localStorage.getItem('auth_token');
 }
@@ -19,12 +17,10 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-// ========== ПРОВЕРКА АВТОРИЗАЦИИ ==========
 if (!getToken()) {
     window.location.href = '/polls/entrance/';
 }
 
-// ========== ЗАГРУЗКА СТАТУСА ИГРЫ (HTTP FALLBACK) ==========
 async function loadGameStatus() {
     const token = getToken();
     if (!token) return null;
@@ -51,7 +47,6 @@ async function loadGameStatus() {
     return null;
 }
 
-// ========== ОБРАБОТКА ОБНОВЛЕНИЯ ИГРЫ ==========
 function handleGameUpdate(data) {
     console.log(data);
     document.getElementById('blue-score').textContent = data.blue_score;
@@ -104,7 +99,6 @@ function handleGameUpdate(data) {
     updateUIByRole(currentPlayerRole, currentTurnTeam, currentPlayerTeam, currentTurnPhase);
 }
 
-// ========== ОБНОВЛЕНИЕ UI ПО РОЛИ ==========
 function updateUIByRole(role, turnTeam, playerTeam, turnPhase) {
     const isMyTeamTurn = (turnTeam === playerTeam);
     const isAssociator = (role === 'associator');
@@ -131,7 +125,6 @@ function updateUIByRole(role, turnTeam, playerTeam, turnPhase) {
     }
 }
 
-// ========== ЗАГРУЗКА ИГРОВОГО ПОЛЯ ==========
 async function loadBoard() {
     console.trace('loadBoard called from:');
     try {
@@ -187,7 +180,6 @@ function renderBoard(cards) {
     boardContainer.appendChild(grid);
 }
 
-// ========== УГАДЫВАНИЕ КАРТОЧКИ ==========
 async function guessCard(cardId) {
     if (socket && wsConnected) {
         socket.send(JSON.stringify({
@@ -198,7 +190,6 @@ async function guessCard(cardId) {
     }
 }
 
-// ========== ОТПРАВКА СООБЩЕНИЯ В ЧАТ ==========
 async function sendChatMessage() {
     const messageInput = document.getElementById('chat-input');
     const message = messageInput?.value.trim();
@@ -214,7 +205,6 @@ async function sendChatMessage() {
     }
 }
 
-// ========== ЗАВЕРШЕНИЕ ХОДА ==========
 async function endTurn() {
     if (socket && wsConnected) {
         socket.send(JSON.stringify({
@@ -224,7 +214,6 @@ async function endTurn() {
     }
 }
 
-// ========== ЗАГРУЗКА СООБЩЕНИЙ ЧАТА ==========
 async function loadChatMessages() {
     try {
         const response = await fetch(`/api/game/chat/${gameId}/`, {
@@ -256,7 +245,6 @@ async function loadChatMessages() {
     }
 }
 
-// ========== ДОБАВЛЕНИЕ СООБЩЕНИЯ В ЧАТ (ИЗ WEBSOCKET) ==========
 function addChatMessage(username, message) {
     const container = document.getElementById('chat-messages');
     if (!container) return;
@@ -270,7 +258,6 @@ function addChatMessage(username, message) {
     container.scrollTop = container.scrollHeight;
 }
 
-// ========== WEBSOCKET ПОДКЛЮЧЕНИЕ ==========
 function connectWebSocket() {
     console.log('Connecting WebSocket...');
     const token = getToken();

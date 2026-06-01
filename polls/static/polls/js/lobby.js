@@ -116,11 +116,9 @@ function escapeHtml(text) {
 }
 
 function updateUI(data) {
-    // Обновляем обе команды
     updateTeamUI('blue', data.blue_team);
     updateTeamUI('red', data.red_team);
 
-    // Находим текущего игрока в обновлённых данных
     const allPlayers = [...data.blue_team, ...data.red_team];
     const currentUsername = JSON.parse(localStorage.getItem('user') || '{}').username;
     const currentUser = allPlayers.find(p => p.username === currentUsername);
@@ -129,14 +127,12 @@ function updateUI(data) {
         currentPlayerTeam = currentUser.team;
         currentPlayerRole = currentUser.role;
 
-        // Обновляем информацию в localStorage (для отображения в навигации)
         const userData = JSON.parse(localStorage.getItem('user') || '{}');
         userData.team = currentUser.team;
         userData.role = currentUser.role;
         localStorage.setItem('user', JSON.stringify(userData));
     }
 
-    // Показываем выбор роли (всегда показываем, если игра не началась)
     const roleSelection = document.getElementById('role-selection');
     const teamSwitch = document.getElementById('team-switch');
 
@@ -150,7 +146,6 @@ function updateUI(data) {
         teamSwitch.style.display = 'none';
     }
 
-    // Обновляем отображение ассоциаторов в UI (если есть такие элементы)
     const blueAssociatorSpan = document.getElementById('blue-associator');
     const redAssociatorSpan = document.getElementById('red-associator');
     if (blueAssociatorSpan) {
@@ -162,7 +157,6 @@ function updateUI(data) {
         redAssociatorSpan.textContent = redAssociator ? redAssociator.username : 'не назначен';
     }
 
-    // Проверяем готовность к старту
     const startContainer = document.getElementById('start-game-container');
     const waitingMessage = document.getElementById('waiting-message');
 
